@@ -1,11 +1,16 @@
 class RuntimesController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
+  def index
+    sql = "SELECT MAX(r.time) as runtime, r.attendee_id, a.ticket_email FROM runtimes r INNER JOIN attendees a ON a.id=r.attendee_id GROUP BY r.attendee_id, a.ticket_email ORDER BY runtime DESC"
+    @leaderboard = Runtime.connection.execute(sql).to_a
+  end
+
   def create
     attendee = Attendee.find_by_ticket_email(params[:email_address])
     if attendee
-      # I don't see how we can have only one event per attendee, but
-      # I'm just going to roll with it for now.
+      # TODO: If we ever run a second event, delete the heroku app
+      # and recreate it.
       # Also, event is the name of the event, event_id is the id,
       # and we don't have access to the actual event object
       event = Event.find(attendee.event_id)

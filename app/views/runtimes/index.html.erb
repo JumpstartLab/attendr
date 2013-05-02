@@ -1,0 +1,11 @@
+<table>
+<% @leaderboard.each do |entry| %>
+	<tr>
+		<td>
+			<%= entry["ticket_email"] %>
+		</td>
+		<td>
+			<%= entry["runtime"] %>
+	</tr>
+<% end %>
+</table>
