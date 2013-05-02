@@ -3,7 +3,7 @@
 <p>Current attendee count: <%= Attendee.checked_in_total %></p>
 <table>
   <tr><th>Name</th><th>Attended</th><th>Didn't</th></tr>
-  <% @event.attendees.each do |attendee| %>
+  <% @event.attendees.order('ticket_name ASC').each do |attendee| %>
     <tr>
       <%= form_for attendee do |f| %>
         <%= f.hidden_field :id, value: attendee.id %>
