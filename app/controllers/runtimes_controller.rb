@@ -9,7 +9,7 @@ class RuntimesController < ApplicationController
       # Also, event is the name of the event, event_id is the id,
       # and we don't have access to the actual event object
       event = Event.find(attendee.event_id)
-      Runtime.create(event: event, attendee: attendee, time: params[:time])
+      Runtime.create(event: event, attendee: attendee, time: params[:runtime])
       render :text => "OK\n", :status => :created
     else
       render :text => "Attendee #{params[:email]} not registered.\n", :status => 418
