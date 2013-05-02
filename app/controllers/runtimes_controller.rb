@@ -2,7 +2,7 @@ class RuntimesController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
   def index
-    sql = "SELECT MAX(r.time) as runtime, r.attendee_id, a.ticket_email FROM runtimes r INNER JOIN attendees a ON a.id=r.attendee_id GROUP BY r.attendee_id, a.ticket_email ORDER BY runtime DESC"
+    sql = "SELECT MAX(r.time) as runtime, r.attendee_id, a.ticket_email FROM runtimes r INNER JOIN attendees a ON a.id=r.attendee_id GROUP BY r.attendee_id, a.ticket_email ORDER BY runtime "
     @leaderboard = Runtime.connection.execute(sql).to_a
   end
 
