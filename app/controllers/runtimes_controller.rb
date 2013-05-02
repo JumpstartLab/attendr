@@ -12,7 +12,7 @@ class RuntimesController < ApplicationController
       Runtime.create(event: event, attendee: attendee, time: params[:time])
       render :text => "OK\n", :status => :created
     else
-      render :text => "Attendee #{params[:email]} not registered.\n", :status => 500
+      render :text => "Attendee #{params[:email]} not registered.\n", :status => 418
     end
   end
 
