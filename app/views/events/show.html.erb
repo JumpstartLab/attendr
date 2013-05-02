@@ -7,7 +7,7 @@
     <tr>
       <%= form_for attendee do |f| %>
         <%= f.hidden_field :id, value: attendee.id %>
-        <td><%= attendee.ticket_name %></td>
+        <td><%= attendee.ticket_name %> (<%= attendee.ticket_email %>)</td>
         <% attendance_fields_for(f, attendee) %>
       <% end %>
     </tr>
